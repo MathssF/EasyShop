@@ -48,12 +48,12 @@ export class Product {
     return result;
   }
   detailsAPI() {
-    // Esta parte é mais demonstrativa do que funcional.
-    return {
+    const result: Record<string, string> = {
       productId: this.id,
       productName: this.name,
-      productDescription: this.description,
-      productImagePath: this.imagePath
     }
+    if (this.description) { result.productDescription = this.description }
+    if (this.imagePath) { result.productImagePath = this.imagePath }
+    return result;
   }
 }
