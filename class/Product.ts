@@ -16,7 +16,7 @@ export class Product {
     this.imagePath = path;
     console.log('Caminho da imagem alterado para "', path, '".');
   }
-  details() {
+  details(): number {
     let count = 2;
     console.log('Detalhes do Produto:');
     console.log('1- ID: ', this.id);
@@ -29,6 +29,7 @@ export class Product {
       count ++;
       console.log(count, '- Caminho da imagem no servidor: ', this.imagePath);
     }
+    return count;
   }
   datilsString() {
     let IdString = `O ID deste produto é: ${this.id}.`;
