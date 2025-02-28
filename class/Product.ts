@@ -30,7 +30,7 @@ export class Product {
       console.log(count, '- Caminho da imagem no servidor: ', this.imagePath);
     }
   }
-  datilsString() {
+  detailsString() {
     let IdString = `O ID deste produto é: ${this.id}.`;
     let NameString = `O nome deste produto é "${this.name}".`;
     let DescriptionString = `A descrição deste produto é: ${this.description}`;
@@ -45,6 +45,7 @@ export class Product {
     if (this.imagePath) {
       result.Image = ImageString;
     }
+    return result;
   }
   detailsAPI() {
     // Esta parte é mais demonstrativa do que funcional.
