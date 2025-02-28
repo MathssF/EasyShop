@@ -35,8 +35,16 @@ export class ShopProduct extends Product{
     return 0
   }
   details() {
-    let count = super.details();
-    count ++;
-
+    let count = 3
+    super.details();
+    if (this.description) count ++;
+    if (this.imagePath) count ++;
+    console.log(count, '- A quantidade atual é de ', this.stockQuantity, ' itens.');
+    count++;
+    console.log(count, '- O Preço do Produto é de R$', this.price, '.');
+    if (this.promotion && this.promotion > 0) {
+      count ++;
+      console.log(count, '- Preço promocional: ');
+    }
   }
 }
