@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 
 export class Customer {
@@ -14,7 +14,11 @@ export class Customer {
     this.name = name;
     this.email = email;
     this.user = user;
-    this.password = pass;
+    this.password = bcrypt.hashSync(pass, 10);
     this.credit = 0;
+  }
+
+  userInfo() {
+    console.log('O Usuário se chama ', this.name, ' e tem o email de endereço ', this.email);
   }
 }
