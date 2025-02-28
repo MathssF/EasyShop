@@ -1,5 +1,5 @@
 {
-  "name": "tests",
+  "name": "EasyShop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "bcrypt": "^5.1.1",
+    "typescript": "^5.8.2",
+    "uuid": "^11.1.0"
+  }
 }
