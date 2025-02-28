@@ -35,8 +35,9 @@ export class Product {
     let NameString = `O nome deste produto é "${this.name}".`;
     let DescriptionString = `A descrição deste produto é: ${this.description}`;
     let ImageString = `O caminho para a imagem deste produto é: ${this.imagePath}`;
-    let result: Object = {
-      ID: IdString, Name: NameString
+    let result: : Record<string, string> = {
+      ID: IdString,
+      Name: NameString
     };
     if (this.description) {
       result.Descriprion = DescriptionString;
