@@ -71,6 +71,9 @@ export class ShopProduct extends Product{
     productName: string;
     productDescription: string;
     productImagePath: string;
+    productQuantity: number;
+    productPrice: number;
+    productPromotionPrice: number;
   }> {
     const result = super.detailsAPI();
     return result;
