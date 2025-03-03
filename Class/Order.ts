@@ -114,13 +114,22 @@ export class Order {
   }
   // Fim da parte do Customer
 
-  private finish() {
-    this.status = 'Finished';
+  private finish(credit?: boolean) {
+    const finalValor = this.orderTotalPrice();
     const list = this.itens.map(elem => elem.detailsAPI())
-    return {
-      Customer: this.customer?.name,
-      Orders: list,
-      TotalPriice: this.orderTotalPrice()
+    let request: any = null
+
+    if (credit) {
+      request = this.customerCreditChange(finalValor, false)
+      if (request.found) {}
+    } else {
+      
+      this.status = 'Finished';
+      return {
+        Customer: this.customer?.name,
+        Orders: list,
+        TotalPrice: this.orderTotalPrice()
+      }
     }
   }
 }
