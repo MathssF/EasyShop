@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ShopProduct } from './ShopProduct';
 
-export class OrderList {
+export class OrderItem {
   private shopItem: ShopProduct | null;
   private quantity: number;
   private itemPrice: number;
@@ -14,12 +14,16 @@ export class OrderList {
     this.totalPrice = this.itemPrice * this.quantity;
   }
 
-  public details() {
+  public detailsLog() {
     console.log(
       ' O Produto "', this.shopItem?.name,
       '" foi posto no carrinho com ', this.quantity,
       '" unidades, pelo valor unitário de R$: ', this.itemPrice,
       ' e total de R$: ', this.totalPrice, '.'
     );
+  }
+
+  public detailsAPI() {
+    
   }
 }

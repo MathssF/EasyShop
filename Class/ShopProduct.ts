@@ -38,9 +38,9 @@ export class ShopProduct extends Product{
 
   // Polimorfismo das classes herdadas:
 
-  public details() {
+  public detailsLog() {
     let count = 3
-    super.details();
+    super.detailsLog();
     if (this.description) count ++;
     if (this.imagePath) count ++;
     console.log(count, '- A quantidade atual é de ', this.stockQuantity, ' itens.');

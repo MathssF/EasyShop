@@ -16,7 +16,7 @@ export class Product {
     this.imagePath = path;
     console.log('Caminho da imagem alterado para "', path, '".');
   }
-  public details() {
+  public detailsLog() {
     let count = 2;
     console.log('Detalhes do Produto:');
     console.log('1- ID: ', this.id);
