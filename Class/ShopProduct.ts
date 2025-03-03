@@ -118,8 +118,6 @@ export class ShopProduct extends Product{
   }
 
   static findProduct(dataProducts: ShopProduct[], productId: string): ShopProduct | null {
-    // Aqui vai localizar primeiramento o Banco
-    // Depois de localizar o Banco, vai localizar o ID do shopProduct.
     const targetProduct = dataProducts.find(elem => elem.id === productId)
     if (targetProduct) return targetProduct;
     return null;

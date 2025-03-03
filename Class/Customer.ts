@@ -21,4 +21,13 @@ export class Customer {
   userInfo() {
     console.log('O Usuário se chama ', this.name, ' e tem o email de endereço ', this.email);
   }
+  userData(dataCustomers: Customer[], userId: string) {
+    const targetUser = dataCustomers.find(elem => elem.id === userId);
+    if (targetUser) return targetUser;
+    return null;
+  }
+
+  showOrders() {
+    //
+  }
 }
