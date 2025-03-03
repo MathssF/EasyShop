@@ -24,6 +24,16 @@ export class OrderItem {
   }
 
   public detailsAPI() {
-    
+    const result =  {
+      name: this.shopItem?.name,
+      description: this.shopItem?.description,
+      quantity: this.quantity,
+      price: this.itemPrice,
+      totalPrice: this.totalPrice
+    }
+    if (result.description === '') {
+      delete result.description
+    }
+    return result;
   }
 }
