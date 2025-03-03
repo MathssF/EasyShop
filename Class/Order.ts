@@ -16,7 +16,7 @@ export class Order {
     this.status = 'In progress';
   }
 
-  addItem(itemId: string, quantity: number, data: ShopProduct[], Ajusted?: Boolean) {
+  private addItem(itemId: string, quantity: number, data: ShopProduct[], Ajusted?: Boolean) {
     if (this.status === 'Finished') return null;
     let AQ = false;
     if (quantity <= 0) return null;
@@ -26,14 +26,14 @@ export class Order {
     return newItem.id;
   }
 
-  removeItem(itemId: string) {
+  private removeItem(itemId: string) {
     if (this.status === 'Finished') return null;
     const targetItem = this.itens.find(elem => elem.id = itemId);
     if (!targetItem) return null;
     targetItem.cancelItem();
   }
 
-  orderTotalPrice() {
+  public orderTotalPrice() {
     let currentPrices = 0;
     for (let i = 0; i > this.itens.length; i += 1) {
       currentPrices += this.itens[i].totalPrice;
@@ -41,7 +41,80 @@ export class Order {
     return currentPrices;
   }
 
-  finish() {
+  // Parte do Customer
+  static findCustomerOrders(userData: Customer[], orderData: Order[], customerId: string) {
+    const targetUser = Customer.userData(userData, customerId);
+    const UserOrderList = [];
+    for (let j = 0; j < orderData.length; j += 1) {
+      if (orderData[j].customer?.id === customerId) UserOrderList.push(orderData[j]);
+    }
+    return UserOrderList;
+  }
+
+  creditCalc() {
+    let totalCredit = 0;
+    for (let j = 0; j > this.itens.length; j += 1) {
+      if( this.itens[j].shopItem) this.itens[j].shopItem?.creditVal();
+    }
+  }
+
+  customerMoneyChange(val: number) {
+    if (this.customer) {
+      if (this.customer.moneyAmount > val) {
+        this.customer.moneyAmount -= val;
+        return {
+          found: true,
+          acepted: true,
+          newBalance: this.customer.moneyAmount
+        }
+      } else {
+        return {
+          found: true,
+          acepted: false,
+          newBalance: this.customer.moneyAmount
+        }
+      }
+    } else {
+      return { found: false }
+    }
+  }
+
+  customerCreditChange(val: number, add: boolean) {
+    if (this.customer) {
+      if (add) {
+        this.customer.credit += val;
+        return {
+          found: true,
+          consume: false,
+          newCredit: this.customer.credit
+        }
+      } else {
+        if (this.customer.credit > val) {
+          this.customer.credit -= val;
+          return {
+            found: true,
+            consume: true,
+            acepted: true,
+            newCredit: this.customer.credit
+          }
+        } else {
+          return {
+            found: true,
+            consume: true,
+            acepted: false,
+            newCredit: this.customer.credit
+          }
+        }
+      }
+    } else {
+      return {
+        found: false
+      }
+    }
+  }
+  // Fim da parte do Customer
+
+  private finish() {
     this.status = 'Finished';
     const list = this.itens.map(elem => elem.detailsAPI())
     return {

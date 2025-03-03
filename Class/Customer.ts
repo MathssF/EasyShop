@@ -4,18 +4,20 @@ import { Order } from './Order';
 
 
 export class Customer {
-  private id: string;
+  public id: string;
   public name: string;
   public email: string;
   public user: string;
   private password: string;
+  public moneyAmount: number;
   public credit: number;
-  constructor(name: string, email: string, user: string, pass: string) {
+  constructor(name: string, email: string, user: string, pass: string, startMoney?: number) {
     this.id = uuidv4();
     this.name = name;
     this.email = email;
     this.user = user;
     this.password = bcrypt.hashSync(pass, 10);
+    this.moneyAmount = startMoney || 0;
     this.credit = 0;
   }
 
@@ -28,7 +30,12 @@ export class Customer {
     return null;
   }
 
-  showOrders() {
-    //
+  showOrders(userData: Customer[], orderData: Order[]) {
+    const OrderList = Order.findCustomerOrders(userData, orderData, this.id);
+    return OrderList;
+  }
+
+  addMoney(val: number) {
+    this.moneyAmount += val;
   }
 }

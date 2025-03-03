@@ -3,20 +3,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export class ShopProduct extends Product{
-  // public shopId: string; // USar só se nescessário
   public price: number;
   public promotion: number;
   public stockQuantity: number;
-  private creditGain?: number;
+  public creditGain: number;
   constructor(
-    price: number, quantity: number, credit: number | null, promotion: number,
-    name: string, description: string | null
+    price: number, quantity: number, promotion: number,
+    name: string, description: string | null, credit: number | null
     ) {
     super(name, description);
-    // this.shopId = uuidv4(); // Usar só se nescessário
     this.price = price;
     this.stockQuantity = quantity >= 0 ? quantity : 0;
-    this.creditGain = 0;
+    this.creditGain = credit ? credit : 0;
     this.promotion = promotion >= 0 && promotion <= 50 ? promotion : 0;
   }
   promotionPrice() {
@@ -34,6 +32,19 @@ export class ShopProduct extends Product{
       return this.creditGain;
     }
     return 0
+  }
+
+  changePromotion(val: number) {
+    if (val <= 50 && val >= 0) this.promotion = val;
+  }
+  cancelPromotion() {
+    this.promotion = 0;
+  }
+  changeCredit(val: number) {
+    if (val*2 < this.promotionPrice()) this.creditGain = val;
+  }
+  cancelCredit() {
+    this.creditGain = 0;
   }
 
   // Polimorfismo das classes herdadas:
@@ -121,5 +132,13 @@ export class ShopProduct extends Product{
     const targetProduct = dataProducts.find(elem => elem.id === productId)
     if (targetProduct) return targetProduct;
     return null;
+  }
+
+  public totalCredit() {
+    if (this.creditGain) {
+      if (this.creditGain*2 < this.promotionPrice()) {
+        return this.creditGain;
+      } else return 0
+    } else return 0
   }
 }
