@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ShopProduct } from './ShopProduct';
 
 export class OrderItem {
-  private id: string;
+  public id: string;
   public shopItem: ShopProduct | null;
   public quantity: number;
   public itemPrice: number;
@@ -65,7 +65,7 @@ export class OrderItem {
     return result;
   }
 
-  public cancelOrder() {
+  public cancelItem() {
     if (this.shopItem) {
       this.shopItem.orderCancelled(this.quantity);
       this.quantity = 0;

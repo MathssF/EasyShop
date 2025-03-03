@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
+import { Order } from './Order';
 
 
 export class Customer {
@@ -18,10 +19,10 @@ export class Customer {
     this.credit = 0;
   }
 
-  userInfo() {
+  public userInfo() {
     console.log('O Usuário se chama ', this.name, ' e tem o email de endereço ', this.email);
   }
-  userData(dataCustomers: Customer[], userId: string) {
+  static userData(dataCustomers: Customer[], userId: string) {
     const targetUser = dataCustomers.find(elem => elem.id === userId);
     if (targetUser) return targetUser;
     return null;
