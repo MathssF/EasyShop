@@ -16,7 +16,7 @@ export class Product {
     this.imagePath = path;
     console.log('Caminho da imagem alterado para "', path, '".');
   }
-  details() {
+  public details() {
     let count = 2;
     console.log('Detalhes do Produto:');
     console.log('1- ID: ', this.id);
@@ -30,7 +30,7 @@ export class Product {
       console.log(count, '- Caminho da imagem no servidor: ', this.imagePath);
     }
   }
-  detailsString() {
+  public detailsString() {
     let IdString = `O ID deste produto é: ${this.id}.`;
     let NameString = `O nome deste produto é "${this.name}".`;
     let DescriptionString = `A descrição deste produto é: ${this.description}`;
@@ -47,7 +47,7 @@ export class Product {
     }
     return result;
   }
-  detailsAPI() {
+  public detailsAPI() {
     const result: Record<string, string> = {
       productId: this.id,
       productName: this.name,

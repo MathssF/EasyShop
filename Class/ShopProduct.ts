@@ -1,6 +1,9 @@
 import { Product } from "./Product";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export class ShopProduct extends Product{
+  // public shopId: string; // USar só se nescessário
   public price: number;
   public promotion: number;
   public stockQuantity: number;
@@ -10,6 +13,7 @@ export class ShopProduct extends Product{
     name: string, description: string | null
     ) {
     super(name, description);
+    // this.shopId = uuidv4(); // Usar só se nescessário
     this.price = price;
     this.stockQuantity = quantity >= 0 ? quantity : 0;
     this.creditGain = 0;
@@ -34,7 +38,7 @@ export class ShopProduct extends Product{
 
   // Polimorfismo das classes herdadas:
 
-  details() {
+  public details() {
     let count = 3
     super.details();
     if (this.description) count ++;
@@ -47,7 +51,7 @@ export class ShopProduct extends Product{
       console.log(count, '- Preço promocional: R$', this.promotionPrice());
     }
   }
-  detailsString(): Record<string, string> {
+  public detailsString(): Record<string, string> {
     const result = super.detailsString();
     let QuantityString = `A quantidade atual deste produto é de ${this.stockQuantity} peças`;
     result.Quantity = QuantityString;
@@ -60,7 +64,7 @@ export class ShopProduct extends Product{
     }
     return result;
   }
-  detailsAPI(): Record<string, string>{
+  public detailsAPI(): Record<string, string>{
     const API = super.detailsAPI();
     const { productId, productName, productDescription, productImagePath } = API;
     const result: Record<string, string>= {productId, productName}
@@ -81,7 +85,7 @@ export class ShopProduct extends Product{
 
   // Métodos para interação com Orders, e com Customers:
 
-  orderProduct(quantity: number) {
+  public orderProduct(quantity: number) {
     const fail = {
       acept: false,
       quantity: 0
@@ -109,7 +113,15 @@ export class ShopProduct extends Product{
       quantity
     };
   }
-  orderCancelled(quantity: number) {
+  public orderCancelled(quantity: number) {
     this.stockQuantity += quantity;
+  }
+
+  static findProduct(dataProducts: ShopProduct[], productId: string): ShopProduct | null {
+    // Aqui vai localizar primeiramento o Banco
+    // Depois de localizar o Banco, vai localizar o ID do shopProduct.
+    const targetProduct = dataProducts.find(elem => elem.id === productId)
+    if (targetProduct) return targetProduct;
+    return null;
   }
 }
