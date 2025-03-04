@@ -16,16 +16,16 @@ const customers: Customer[] = [
 
 // Criando 10 produtos (8 com estoque, 2 sem)
 const products: ShopProduct[] = [
-  new ShopProduct(50, 10, 10, 'Notebook', 'Laptop potente', 5),
-  new ShopProduct(30, 5, 405, 'Teclado Mecânico', 'Teclado gamer RGB', 2),
-  new ShopProduct(20, 0, 0, 'Mouse Sem Fio', 'Mouse ergonômico', 1),
-  new ShopProduct(15, 8, 1200, 'Fone Bluetooth', 'Fone de ouvido com redução de ruído', 3),
-  new ShopProduct(100, 0, 50, 'Monitor 27"', 'Monitor Full HD', 8),
-  new ShopProduct(80, 6, 155, 'Cadeira Gamer', 'Conforto e ergonomia', 10),
-  new ShopProduct(40, 12, 75, 'Webcam HD', 'Câmera de alta definição', 4),
+  new ShopProduct(50, 100, 10, 'Notebook', 'Laptop potente', 5),
+  new ShopProduct(30, 105, 5, 'Teclado Mecânico', 'Teclado gamer RGB', 2),
+  new ShopProduct(20, 100, 0, 'Mouse Sem Fio', 'Mouse ergonômico', 1),
+  new ShopProduct(15, 850, 5, 'Fone Bluetooth', 'Fone de ouvido com redução de ruído', 3),
+  new ShopProduct(100, 1000, 50, 'Monitor 27"', 'Monitor Full HD', 8),
+  new ShopProduct(80, 6, 5, 'Cadeira Gamer', 'Conforto e ergonomia', 10),
+  new ShopProduct(40, 12, 5, 'Webcam HD', 'Câmera de alta definição', 4),
   new ShopProduct(25, 7, 8, 'Microfone Condensador', 'Ideal para streaming', 3),
   new ShopProduct(10, 3, 2, 'Suporte para Notebook', 'Ajustável e portátil', 1),
-  new ShopProduct(5, 9, 200, 'Mouse Pad', 'Superfície antiderrapante', 0)
+  new ShopProduct(5, 9, 20, 'Mouse Pad', 'Superfície antiderrapante', 0)
 ];
 
 // Criando 12 OrderItems
