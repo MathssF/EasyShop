@@ -112,11 +112,9 @@ export class ShopProduct extends Product{
       quantity: 0
     };
     if (this.stockQuantity = 0) {
-      // console.log('O Produto atual não tem estoque.')
       return fail;
     }
     if (quantity < 1) {
-      // console.log('Precisa selecionar ao menos um item.')
       return fail;
     }
     if (quantity > this.stockQuantity) {
@@ -128,7 +126,7 @@ export class ShopProduct extends Product{
       };
     }
     this.stockQuantity -= quantity;
-    console.log('Foi reservado ', quantity, ' unidades deste produto.');
+    // console.log('Foi reservado ', quantity, ' unidades deste produto.');
     return {
       acept: true,
       quantity

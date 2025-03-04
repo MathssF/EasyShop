@@ -15,7 +15,7 @@ export class Order {
     this.status = 'In progress';
   }
 
-  private addItem(item: ShopProduct, quantity: number, Ajusted?: Boolean) {
+  public addItem(item: ShopProduct, quantity: number, Ajusted?: Boolean) {
     if (this.status === 'Finished') return null;
     if (quantity <= 0) return null;
     let ajusted = false;
@@ -25,7 +25,7 @@ export class Order {
     return newItem.id;
   }
 
-  private removeItem(itemId: string) {
+  public removeItem(itemId: string) {
     if (this.status === 'Finished') return null;
     const targetItem = this.itens.find(elem => elem.id = itemId);
     if (!targetItem) return null;
@@ -106,9 +106,14 @@ export class Order {
       }
     }
   }
+
   // Fim da parte do Customer
 
-  private finish(credit?: boolean) {
+  public showOrderList() {
+    console.log(this.itens);
+  }
+
+  public finish(credit?: boolean) {
     this.status = 'In progress';
     const finalValor = this.orderTotalPrice();
     const list = this.itens.map(elem => elem.detailsAPI())

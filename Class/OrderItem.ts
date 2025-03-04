@@ -3,7 +3,7 @@ import { ShopProduct } from './ShopProduct';
 
 export class OrderItem {
   public id: string;
-  public shopItem: ShopProduct | null;
+  public shopItem: ShopProduct;
   public quantity: number;
   public itemPrice: number;
   public totalPrice: number;

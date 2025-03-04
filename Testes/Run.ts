@@ -26,9 +26,15 @@ const customer = new Customer("Lucas", "lcsflrs@gmail.com", "lcsflrs", "12312312
 console.log('Parte dos pedidos')
 const orderItem1 = new OrderItem(2, shopProduct1)
 const orderItem2 = new OrderItem(3, shopProduct2)
+const orderItem3 = new OrderItem(8, shopProduct3)
 
 // orderItem1.detailsLog()
 // orderItem2.detailsLog()
 
 console.log('Parte final');
 const order = new Order(customer)
+order.addItem(new ShopProduct(new Product('YoPro'), 20, 30, 25), 20, true);
+order.addItem(shopProduct1, 5, false);
+order.addItem(shopProduct3, 7, true);
+
+order.showOrderList();
