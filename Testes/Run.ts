@@ -88,6 +88,10 @@ product2.detailsLog();
 console.log('Parte dos Shop Produtos');
 const shopProduct1 = new ShopProduct(product1, 10, 50, 0)
 const shopProduct2 = new ShopProduct(product2, 6, 20, 0)
+const shopProduct3 = new ShopProduct({name: "Guarana", description: "Refrigerante de Guarana"}, 20, 6, 10)
+
+shopProduct1.detailsLog();
+shopProduct2.detailsLog();
 
 console.log('Parte do Customer');
 const customer = new Customer("Lucas", "lcsflrs@gmail.com", "lcsflrs", "123123123")
