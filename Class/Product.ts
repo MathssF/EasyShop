@@ -25,11 +25,11 @@ export class Product {
     console.log('2- Nome: ', this.name);
     if (this.description) {
       count ++;
-      console.log(count, '- Descrição: ', this.description);
+      console.log(`${count}- Descrição: ${this.description}`);
     }
     if (this.imagePath) {
       count ++;
-      console.log(count, '- Caminho da imagem no servidor: ', this.imagePath);
+      console.log(`${count}- Caminho da imagem no servidor: ${this.imagePath}`);
     }
   }
 

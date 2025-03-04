@@ -61,12 +61,13 @@ export class ShopProduct extends Product{
     super.detailsLog();
     if (this.description) count ++;
     if (this.imagePath) count ++;
-    console.log(count, '- A quantidade atual é de ', this.stockQuantity, ' itens.');
+    console.log(`${count}- A quantidade atual é de ${this.stockQuantity}`);
     count++;
-    console.log(count, '- O Preço do Produto é de R$', this.price, '.');
+    console.log(`${count}- O Preço do Produto é de R$' ${this.price}`);
     if (this.promotion > 0) {
       count ++;
-      console.log(count, '- Preço promocional: R$', this.promotionPrice());
+      console.log(`${count}- Preço promocional: R$' ${this.promotionPrice()}`);
+
     }
   }
 
