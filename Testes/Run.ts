@@ -30,11 +30,11 @@ console.log('Mostrar 2 produtos:');
 iProduct[2].detailsLog();
 iProduct[3].detailsLog();
 
-console.log('Agora mostrar em formato de API: ');
-iProduct[4].detailsAPI();
+console.log('Agora mostrar em formato de API: ',
+iProduct[4].detailsAPI());
 
-console.log('Agora Exemplo de Order: ');
-iOrder[5].orderTotalPrice();
+console.log('Agora Exemplo de Order: ',
+iOrder[5].orderTotalPrice());
 
-console.log('Agora exemplo de lista de clientes: ');
-iCustomer[2].showOrders(iCustomer, iOrder);
+console.log('Agora exemplo de lista de clientes: ',
+iCustomer[2].showOrders(iCustomer, iOrder));
