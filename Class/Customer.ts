@@ -32,8 +32,8 @@ export class Customer {
     return null;
   }
 
-  showOrders(userData: Customer[], orderData: Order[]) {
-    const orderList = Order.findCustomerOrders(userData, orderData, this.id);
+  showOrders(orderData: Order[]) {
+    const orderList = Order.findCustomerOrders(orderData, this.id);
     return orderList;
   }
 

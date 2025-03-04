@@ -5,26 +5,25 @@ import { ShopProduct } from './ShopProduct';
 
 export class Order {
   private id: string;
-  public customer: Customer | null;
+  public customer: Customer;
   public itens: OrderItem[];
   public status: string;
-  constructor(userId: string, data: Customer[]) {
+  constructor(user: Customer) {
     this.id = uuidv4();
-    const FoundUser = Customer.userData(data, userId);
-    this.customer = FoundUser;
+    this.customer = user;
     this.itens = [];
     this.status = 'In progress';
   }
 
-  // private addItem(itemId: string, quantity: number, data: ShopProduct[], Ajusted?: Boolean) {
-  //   if (this.status === 'Finished') return null;
-  //   let AQ = false;
-  //   if (quantity <= 0) return null;
-  //   if (Ajusted) AQ = true;
-  //   const newItem = new OrderItem(itemId, quantity, data);
-  //   if (newItem.quantity > 0) this.itens.push(newItem);
-  //   return newItem.id;
-  // }
+  private addItem(item: ShopProduct, quantity: number, Ajusted?: Boolean) {
+    if (this.status === 'Finished') return null;
+    if (quantity <= 0) return null;
+    let ajusted = false;
+    if (Ajusted) ajusted = true;
+    const newItem = new OrderItem(quantity, item, ajusted);
+    if (newItem.quantity > 0) this.itens.push(newItem);
+    return newItem.id;
+  }
 
   private removeItem(itemId: string) {
     if (this.status === 'Finished') return null;
@@ -42,13 +41,7 @@ export class Order {
   }
 
   // Parte do Customer
-  static findCustomerOrders(userData: Customer[], orderData: Order[], customerId: string) {
-    // const UserOrderList = [];
-    // for (let j = 0; j < orderData.length; j += 1) {
-    //  if (orderData[j].customer?.id === customerId) UserOrderList.push(orderData[j]);
-    // }
-    // return UserOrderList;
-
+  static findCustomerOrders(orderData: Order[], customerId: string) {
     return orderData.filter((elem) => elem.customer?.id === customerId)
   }
 
