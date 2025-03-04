@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class Product {
-  protected id: string;
+  public id: string;
   public name: string;
   public description?: string;
   protected imagePath: string;

@@ -115,20 +115,56 @@ export class Order {
   // Fim da parte do Customer
 
   private finish(credit?: boolean) {
+    this.status = 'In progress';
     const finalValor = this.orderTotalPrice();
     const list = this.itens.map(elem => elem.detailsAPI())
     let request: any = null
 
     if (credit) {
-      request = this.customerCreditChange(finalValor, false)
-      if (request.found) {}
+      request = this.customerCreditChange(finalValor, false);
+      if (request.found) {
+        if (request.consume && request.acepted) {
+          this.status = 'Finished - Credit';
+          return {
+            Customer: this.customer?.name,
+            Orders: list,
+            TotalPrice: this.orderTotalPrice(),
+            NewCredit: request.newCredit
+          }
+        } else {
+          this.status = 'Failed';
+          return {
+            Error: 'Sem crédito suficiente.'
+          }
+        }
+      } else {
+        this.status = 'Failed';
+        return {
+          Error: 'Cliente não encontrado.'
+        }
+      }
     } else {
-      
-      this.status = 'Finished';
-      return {
-        Customer: this.customer?.name,
-        Orders: list,
-        TotalPrice: this.orderTotalPrice()
+      request = this.customerMoneyChange(finalValor);
+      if (request.found) {
+        if (request.acepted) {
+          this.status = 'Finished';
+          return {
+            Customer: this.customer?.name,
+            Orders: list,
+            TotalPrice: this.orderTotalPrice(),
+            NewBalance: request.newBalance
+          }
+        } else {
+          this.status = 'Failed';
+          return {
+            Error: 'Sem crédito suficiente.'
+          }
+        }
+      } else {
+        this.status = 'Failed';
+        return {
+          Error: 'Cliente não encontrado.'
+        }
       }
     }
   }
