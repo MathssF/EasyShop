@@ -66,3 +66,5 @@ console.log('Clientes:', customers);
 console.log('Produtos:', products);
 console.log('Itens de Pedido:', orderItems);
 console.log('Pedidos:', orders);
+
+export { customers, products, orderItems, orders };
