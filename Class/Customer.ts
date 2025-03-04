@@ -11,6 +11,7 @@ export class Customer {
   private password: string;
   public moneyAmount: number;
   public credit: number;
+
   constructor(name: string, email: string, user: string, pass: string, startMoney?: number) {
     this.id = uuidv4();
     this.name = name;
@@ -24,6 +25,7 @@ export class Customer {
   public userInfo() {
     console.log('O Usuário se chama ', this.name, ' e tem o email de endereço ', this.email);
   }
+
   static userData(dataCustomers: Customer[], userId: string) {
     const targetUser = dataCustomers.find(elem => elem.id === userId);
     if (targetUser) return targetUser;
@@ -31,8 +33,8 @@ export class Customer {
   }
 
   showOrders(userData: Customer[], orderData: Order[]) {
-    const OrderList = Order.findCustomerOrders(userData, orderData, this.id);
-    return OrderList;
+    const orderList = Order.findCustomerOrders(userData, orderData, this.id);
+    return orderList;
   }
 
   addMoney(val: number) {

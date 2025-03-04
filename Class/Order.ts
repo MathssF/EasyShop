@@ -16,15 +16,15 @@ export class Order {
     this.status = 'In progress';
   }
 
-  private addItem(itemId: string, quantity: number, data: ShopProduct[], Ajusted?: Boolean) {
-    if (this.status === 'Finished') return null;
-    let AQ = false;
-    if (quantity <= 0) return null;
-    if (Ajusted) AQ = true;
-    const newItem = new OrderItem(itemId, quantity, data, AQ);
-    if (newItem.quantity > 0) this.itens.push(newItem);
-    return newItem.id;
-  }
+  // private addItem(itemId: string, quantity: number, data: ShopProduct[], Ajusted?: Boolean) {
+  //   if (this.status === 'Finished') return null;
+  //   let AQ = false;
+  //   if (quantity <= 0) return null;
+  //   if (Ajusted) AQ = true;
+  //   const newItem = new OrderItem(itemId, quantity, data);
+  //   if (newItem.quantity > 0) this.itens.push(newItem);
+  //   return newItem.id;
+  // }
 
   private removeItem(itemId: string) {
     if (this.status === 'Finished') return null;
@@ -43,12 +43,13 @@ export class Order {
 
   // Parte do Customer
   static findCustomerOrders(userData: Customer[], orderData: Order[], customerId: string) {
-    const targetUser = Customer.userData(userData, customerId);
-    const UserOrderList = [];
-    for (let j = 0; j < orderData.length; j += 1) {
-      if (orderData[j].customer?.id === customerId) UserOrderList.push(orderData[j]);
-    }
-    return UserOrderList;
+    // const UserOrderList = [];
+    // for (let j = 0; j < orderData.length; j += 1) {
+    //  if (orderData[j].customer?.id === customerId) UserOrderList.push(orderData[j]);
+    // }
+    // return UserOrderList;
+
+    return orderData.filter((elem) => elem.customer?.id === customerId)
   }
 
   creditCalc() {

@@ -8,14 +8,17 @@ export class OrderItem {
   public itemPrice: number;
   public totalPrice: number;
   public status: string;
-  constructor(itemId: string, quantity: number, data: ShopProduct[], AdjustQuantity?: boolean) {
-    const FoundProduct = ShopProduct.findProduct(data, itemId);
+
+  constructor(quantity: number, shopProduct: ShopProduct, AdjustQuantity?: boolean) {
+    // const foundProduct = ShopProduct.findProduct(data, itemId);
     this.id = uuidv4();
-    this.shopItem = FoundProduct;
+    this.shopItem = shopProduct;
     let finalQuantity = 0;
     let finalStatus = 'Processed';
+
     if (this.shopItem) {
       const tryOrder = this.shopItem.orderProduct(quantity)
+
       if (tryOrder.acept) {
         finalQuantity = quantity;
         finalStatus = 'Acepted';
@@ -37,7 +40,7 @@ export class OrderItem {
       }
     }
     this.quantity = finalQuantity;
-    this.itemPrice = FoundProduct ? FoundProduct.promotionPrice() : 0;
+    this.itemPrice = shopProduct ? shopProduct.promotionPrice() : 0;
     this.totalPrice = this.itemPrice * this.quantity;
     this.status = finalStatus;
   }

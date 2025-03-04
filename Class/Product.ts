@@ -5,7 +5,8 @@ export class Product {
   public name: string;
   public description?: string;
   protected imagePath: string;
-  constructor(name: string, description: string | null) {
+
+  constructor(name: string, description?: string) {
     this.id = uuidv4();
     this.name = name;
     this.description = description || '';
@@ -16,6 +17,7 @@ export class Product {
     this.imagePath = path;
     console.log('Caminho da imagem alterado para "', path, '".');
   }
+
   public detailsLog() {
     let count = 2;
     console.log('Detalhes do Produto:');
@@ -30,6 +32,7 @@ export class Product {
       console.log(count, '- Caminho da imagem no servidor: ', this.imagePath);
     }
   }
+
   public detailsString() {
     let IdString = `O ID deste produto é: ${this.id}.`;
     let NameString = `O nome deste produto é "${this.name}".`;
@@ -47,6 +50,7 @@ export class Product {
     }
     return result;
   }
+  
   public detailsAPI() {
     const result: Record<string, string> = {
       productId: this.id,
