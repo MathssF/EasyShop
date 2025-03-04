@@ -112,16 +112,16 @@ export class ShopProduct extends Product{
       quantity: 0
     };
     if (this.stockQuantity = 0) {
-      console.log('O Produto atual não tem estoque.')
+      // console.log('O Produto atual não tem estoque.')
       return fail;
     }
     if (quantity < 1) {
-      console.log('Precisa selecionar ao menos um item.')
+      // console.log('Precisa selecionar ao menos um item.')
       return fail;
     }
     if (quantity > this.stockQuantity) {
-      console.log('Não se tem tantas unidades deste produto, a quantidade atual é de ',
-      this.stockQuantity, '.');
+      // console.log('Não se tem tantas unidades deste produto, a quantidade atual é de ',
+      // this.stockQuantity, '.');
       return {
         acept: false,
         quantity

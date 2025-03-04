@@ -17,7 +17,8 @@ export class OrderItem {
     let finalStatus = 'Processed';
 
     if (this.shopItem) {
-      const tryOrder = this.shopItem.orderProduct(quantity)
+      const tryOrder = this.shopItem.orderProduct(quantity);
+      console.log('Try Order quantity: ', tryOrder.quantity);
 
       if (tryOrder.acept) {
         finalQuantity = quantity;
