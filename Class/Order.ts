@@ -42,7 +42,7 @@ export class Order {
 
   // Parte do Customer
   static findCustomerOrders(orderData: Order[], customerId: string) {
-    return orderData.filter((elem) => elem.customer?.id === customerId)
+    return orderData.filter((elem) => elem.customer?.id === customerId);
   }
 
   creditCalc() {
